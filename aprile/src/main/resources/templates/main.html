@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot</title>
+</head>
+
+<body>
+
+    <h1>Esercizi con Spring Boot </h1><br>
+    <h2>Es 1</h2>
+    <p>Vai alla pagina <a th:href="@{/nome}">"Salutami"</a>
+    
+    
+    
+    <h2>Es 2</h2>
+    <p>Saluto Personalizzato</p>
+    <p>Nome:<input type="text" id="nome"><p>
+    <p>Cognome:<input type="text" id="cognome"><p>
+    <p><button onClick="salutami()">Clicca per il saluto</button></p>
+      
+    
+    
+    <h2>Calcolatrice</h2>
+    <p>N1: <input type="number" id="n1"></p>
+    <p>N2: <input type="number" id="n2"><p>
+    <p><button onClick="addizione()">Somma</button>
+    <button onClick="sottrazione()">Differenza</button>
+    <button onClick="moltiplicazione()">Prodotto</button>
+    <button onClick="divisione()">Risultato</button></p>
+    
+    
+    
+</body>
+	<script>
+	function salutami(){
+		let nome = document.getElementById("nome").value
+		let cognome = document.getElementById("cognome").value
+		
+		let qString = "?nome="+nome+"&cognome="+cognome
+		window.location = "/greeting" + qString
+	}
+	function addizione(){
+		let n1=document.getElementById("n1").value
+		let n2=document.getElementById("n2").value
+		
+		let qInteger = "?n1="+n1+"&n2="+n2
+		window.location = "/somma"+qInteger
+	}
+	function sottrazione(){
+		let n1=document.getElementById("n1").value
+		let n2=document.getElementById("n2").value
+		
+		let qInteger = "?n1="+n1+"&n2="+n2
+		window.location ="/differenza"+qInteger
+	}
+	function moltiplicazione(){
+		let n1=document.getElementById("n1").value
+		let n2=document.getElementById("n2").value
+		
+		let qInteger = "?n1="+n1+"&n2="+n2
+		window.location ="/prodotto"+qInteger
+	}
+	function divisione(){
+		let n1=document.getElementById("n1").value
+		let n2=document.getElementById("n2").value
+		
+		let qInteger = "?n1="+n1+"&n2="+n2
+		window.location ="/divisione"+qInteger
+	}
+	
+	
+	
+	</script>
+
+</html>
