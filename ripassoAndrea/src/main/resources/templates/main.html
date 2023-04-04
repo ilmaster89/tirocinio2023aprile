@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Benvenuto!</h1>
+    <a th:href="@{/saluto}">Pagina Saluto</a>
+    <a th:href="@{/insert}">Inserisci Utente</a>
+    <a th:href="@{/list}">Lista Utenti</a>
+
+    <h2>Saluto personalizzato</h2>
+
+    <p>Nome: <input type="text" id="nome"></p>
+    <p>Cognome: <input type="text" id="cognome"></p>
+    <p><button onclick="saluto()">Salutami</button></p>
+
+
+    <h2>Saluto Tramite Form</h2>
+    <form method="post" th:action="@{/salutoPersonaleFORM}">
+        <p>Nome: <input type="text" name="nome"></p>
+        <p>Cognome: <input type="text" name="cognome"></p>
+        <p><input type="submit" value="Salutami"></p>
+    </form>
+
+
+    <h2>Calcolatrice</h2>
+    <p>Numero uno: <input type="number" id="n1"></p>
+    <p>Numero due: <input type="number" id="n2"></p>
+    <div style="display: flex;">
+        <button onclick="add()">+</button>
+        <button onclick="subtract()">-</button>
+        <button onclick="multiply()">X</button>
+        <button onclick="divide()">/</button>
+    </div>
+</body>
+
+<script>
+    const nome = document.getElementById("nome")
+    const cognome = document.getElementById("cognome")
+
+    const n1 = document.getElementById("n1")
+    const n2 = document.getElementById("n2")
+
+    function doAnOperation(n1, n2, op) {
+        let qString = "?n1=" + n1 + "&n2=" + n2 + "&op=" + op
+        window.location = "/result" + qString
+    }
+
+    function add() {
+        doAnOperation(n1.value, n2.value, "sum")
+    }
+    function subtract() {
+        doAnOperation(n1.value, n2.value, "difference")
+    }
+    function multiply() {
+        doAnOperation(n1.value, n2.value, "product")
+    }
+    function divide() {
+        doAnOperation(n1.value, n2.value, "division")
+    }
+
+
+    function saluto() {
+
+        let qString = "?nome=" + nome.value + "&cognome=" + cognome.value
+        window.location = "/salutoPersonale" + qString
+
+    }
+</script>
+
+</html>
