@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Lista Utenti</h1>
+    <div th:each="u: ${list}">
+        <p th:text="|Nome: ${u.nome}|"></p>
+        <p th:text="|Cognome: ${u.cognome}|"></p>
+        <p th:text="|Data di nascita: ${#dates.format(u.dataNascita, 'dd/MM/yyyy')}|"></p>
+        <p><a th:href="@{/update/{id}(id=${u.id})}">Modifica</a></p>
+        <p><a th:href="@{/delete/{id}(id=${u.id})}">Elimina</a></p>
+        <hr>
+    </div>
+
+    <p>
+        <a th:href="@{/insert}">Inserisci Utente</a>
+    </p>
+</body>
+
+</html>

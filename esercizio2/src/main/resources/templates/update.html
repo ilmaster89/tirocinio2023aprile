@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Modifica Utente</h1>
+    <form th:action="@{/updateUtente}" method="post" th:object="${utente}">
+        <input type="hidden" th:field="*{id}">
+        <p>Nome: <input type="text" th:field="*{nome}"></p>
+        <p>Cognome: <input type="text" th:field="*{cognome}"></p>
+        <p>Data di nascita: <input type="date" th:field="*{dataNascita}"></p>
+        <p><input type="submit" value="Modifica"></p>
+    </form>
+</body>
+
+</html>
