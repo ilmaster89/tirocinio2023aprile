@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Inserisci Professore</h1>
+
+
+    <p>Nome: <input type="text" id="nome"></p>
+    <p>Cognome: <input type="text" id="cognome"></p>
+    <div th:each="c: ${corsi}">
+        <input class="check" type="checkbox" th:value="${c.id}"><span th:text="${c.nomeCorso}"></span>
+    </div>
+    <p><button onclick="newProf()">Inserisci</button></p>
+
+</body>
+
+<script>
+    function newProf() {
+
+        let nome = document.getElementById("nome").value
+        let cognome = document.getElementById("cognome").value
+        let checkboxes = document.getElementsByClassName("check")
+        let corsi = new Array()
+
+        for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                corsi.push(checkboxes[i].value)
+            }
+        }
+
+        let list = corsi.join(",")
+
+        let qString = "?nome=" + nome + "&cognome=" + cognome + "&corsi=" + list
+        window.location = "http://localhost:8080/newProf" + qString
+
+    }
+</script>
+
+</html>
