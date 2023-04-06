@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Lista Professori</h1>
+
+    <div th:each="p: ${list}">
+        <p th:text="|Nome: ${p.nome}|"></p>
+        <p th:text="|Cognome: ${p.cognome}|"></p>
+        <p><strong>Corsi in cui insegna:</strong></p>
+        <ul>
+            <li th:each="i: ${p.insegnamenti}" th:text="${i.corso.nomeCorso}"></li>
+        </ul>
+        <hr>
+    </div>
+</body>
+
+</html>
