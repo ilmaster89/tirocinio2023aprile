@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>F2 E-commerce</h1>
+    <h2>Login</h2>
+    <form method="post" th:action="@{/login}" th:object="${utente}">
+        <p>Username: <input type="text" th:field="*{username}"></p>
+        <p>Password: <input type="password" th:field="*{password}"></p>
+        <p><input type="submit" value="Login"></p>
+    </form>
+</body>
+
+</html>

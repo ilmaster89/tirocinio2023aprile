@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>F2 E-commerce</h1>
+    <h2>Il tuo carrello</h2>
+
+    <div th:if="${session.loggedUser.carrello.size() == 0}">
+        Il tuo carrello è vuoto!
+    </div>
+    <div th:if="${session.loggedUser.carrello.size() != 0}">
+        <ul>
+            <li th:each="p: ${session.loggedUser.carrello}" th:text="${p.nome}"></li>
+        </ul>
+
+        <p><a th:href="@{/confermaAcquisto}">Conferma l'acquisto</a></p>
+        <p><a th:href="@{/svuotaCarrello}">Svuota il carrello</a></p>
+    </div>
+</body>
+
+</html>

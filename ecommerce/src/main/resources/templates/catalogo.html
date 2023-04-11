@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>F2 E-commerce</h1>
+    <h2 th:text="|Benvenuto ${session.loggedUser.nome} ${session.loggedUser.cognome}!|"></h2>
+    <p><a th:href="@{/paginaCarrello}" th:text="|Carrello (${session.loggedUser.carrello.size()})|"></a></p>
+    <h3>Prodotti acquistabili:</h3>
+    <div th:each="p : ${prodotti}">
+        <p><img th:src="${p.img}" style="width:200px; height: 200px;"></p>
+        <p th:text="${p.nome}"></p>
+        <p th:text="|€ ${p.prezzo}|"></p>
+        <p><a th:href="@{/mettiNelCarrello/{id}(id=${p.id})}">Metti nel carrello</a> </p>
+    </div>
+</body>
+
+</html>
