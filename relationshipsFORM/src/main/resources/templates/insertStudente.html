@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Nuovo Studente</h1>
+
+    <form method="post" th:action="@{/newStudente}" th:object="${studente}">
+        <p>Nome: <input type="text" th:field="*{nome}"></p>
+        <p>Cognome: <input type="text" th:field="*{cognome}"></p>
+        <p>Corso:
+            <select th:field="*{corso}">
+                <option th:each="c: ${corsi}" th:value="${c.id}" th:text="${c.nomeCorso}"></option>
+            </select>
+        </p>
+        <p><input type="submit" value="Inserisci"></p>
+    </form>
+</body>
+
+</html>
