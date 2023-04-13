@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Scuola F2</h1>
+    <h2>Nuovo Utente</h2>
+
+    <form th:action="@{/new}" method="post" th:object="${utente}">
+
+        <p>Nome: <input type="text" th:field="*{nome}"></p>
+        <p>Cognome: <input type="text" th:field="*{cognome}"></p>
+        <p>Username: <input type="text" th:field="*{username}"></p>
+        <p>Password: <input type="password" th:field="*{password}"></p>
+
+        <div th:if="${session.user.ruolo.nome.equals('admin')}">
+            <p>Ruolo:
+                <select th:field="*{ruolo}">
+                    <option th:each="r: ${ruoli}" th:value="${r.id}" th:text="${r.nome}"></option>
+                </select>
+            </p>
+        </div>
+
+        <p><input type="submit" value="Inserisci"></p>
+    </form>
+</body>
+
+</html>
