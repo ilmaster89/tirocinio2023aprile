@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>F2Book</h1>
+    <h2 th:text="|Profilo di ${utente.nome} ${utente.cognome}|"></h2>
+
+    <p th:text="|Nome: ${utente.nome}|"></p>
+    <p th:text="|Cognome: ${utente.cognome}|"></p>
+    <p th:if="${utente.getAttivo() == 1}" style="color:green">Utente attivo</p>
+    <p th:if="${utente.getAttivo() == 0}" style="color: red;">Utente non attivo</p>
+
+    <div
+        th:if="${(session.loggedUser.ruolo.id == 1 || session.loggedUser.ruolo.id == 2) && session.loggedUser.id != utente.id}">
+        <div th:if="${utente.getAttivo() == 1}">
+            <h2>Banna questo utente</h2>
+            <form th:action="@{/userBan/{userId}(userId=${utente.id})}" method="post">
+                <p>Per quanti giorni?<br><input type="number" name="giorni"></p>
+                <p><input type="submit" value="Banna"></p>
+            </form>
+            <form th:action="@{/allTimeBan/{userId}(userId=${utente.id})}" method="post">
+                <p><input type="submit" value="Vuoi bannarlo per sempre?"></p>
+            </form>
+            <div th:if="${utente.getRuolo().getId() != 2 && utente.getRuolo().getId() != 1}">
+                <h2>Rendi moderatore questo utente</h2>
+                <form th:action="@{/promote/{userId}(userId=${utente.id})}" method="post">
+                    <input type="submit" value="Conferma">
+                </form>
+            </div>
+        </div>
+
+        <div th:if="${utente.getAttivo() == 0}">
+            <h3>L'utente è stato bannato.</h3>
+            <form th:action="@{/reactivateUser/{userId}(userId = ${utente.id})}" method="post">
+                <input type="submit" value="Lo vuoi riattivare?">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

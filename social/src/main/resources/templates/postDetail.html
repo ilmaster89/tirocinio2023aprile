@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>F2Book</h1>
+    <h2 th:text="${post.titolo}"></h2>
+    <h3 th:text="|di ${post.utente.nome} ${post.utente.cognome}|"></h3>
+
+    <div th:text="${post.testo}">
+    </div>
+    <hr>
+    <hr>
+    <p th:each="c: ${post.commenti}"><a th:href="@{/userProfile/{userId}(userId = ${c.utente.id})}"
+            th:text="|${c.utente.nome} ${c.utente.cognome}: |"></a><span
+            th:text="|${c.commento} (${#dates.format(c.dataCommento, 'dd/MM/yyyy')})|"></span>
+    </p>
+    <p>
+    <form method="post" th:action="@{/commentaFromDetail/{postId}(postId=${post.id})}">
+        <input type="text" name="commento">
+        <input type="submit" value="Commenta">
+    </form>
+    </p>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>F2Book</h1>
+    <h2 th:text="|Benvenuto ${session.loggedUser.nome}!|"></h2>
+    <a th:href="@{/userProfile/{userId}(userId = ${session.loggedUser.id})}">Il mio profilo</a>
+    <div th:each="n: ${notifications}">
+        <a th:href="@{/postDetail/{postId}(postId=${n.id})}" th:text="|${n.titolo} ha nuovi commenti!|"></a>
+    </div>
+    <h3>Dicci qualcosa!</h3>
+    <form th:action="@{/newPost}" method="post" th:object="${post}">
+        <p>Titolo: <br><input type="text" th:field="*{titolo}"></p>
+        <p>Testo: <br><textarea th:field="*{testo}" rows="10" cols="50"></textarea></p>
+        <p><input type="submit" value="Conferma post"></p>
+    </form>
+    <h3>Le ultime attivit&agrave; sul network:</h3>
+    <div th:each="p: ${posts}">
+        <p><a th:href="@{/userProfile/{userId}(userId = ${p.utente.id})}"
+                th:text="|${p.utente.nome} ${p.utente.cognome}|"></a></p>
+        <p><strong th:text="${p.titolo}"></strong></p>
+        <p th:text="${p.testo}"></p>
+        <hr>
+        <hr>
+        <p th:each="c: ${p.commenti}"><a th:href="@{/userProfile/{userId}(userId = ${c.utente.id})}"
+                th:text="|${c.utente.nome} ${c.utente.cognome}: |"></a><span
+                th:text="|${c.commento} (${#dates.format(c.dataCommento, 'dd/MM/yyyy')})|"></span>
+        </p>
+        <p>
+        <form method="post" th:action="@{/commenta/{postId}(postId=${p.id})}">
+            <input type="text" name="commento">
+            <input type="submit" value="Commenta">
+        </form>
+        </p>
+        <hr style="border: 2px solid black;">
+    </div>
+</body>
+
+</html>
