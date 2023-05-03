@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Your order</h1>
+    <div>
+        <p><strong>Personal Data</strong></p>
+        <p th:text="|Name: ${name}|"></p>
+        <p th:text="|Surname: ${surname}|"></p>
+        <p th:text="|Address: ${address}|"></p>
+    </div>
+
+    <p><strong>Your Items</strong></p>
+    <div th:each="o: ${orders}">
+        <p th:text="|Product: ${o.product}|"></p>
+        <p th:text="|Quantity: ${o.quantity}|"></p>
+    </div>
+
+</body>
+
+</html>
