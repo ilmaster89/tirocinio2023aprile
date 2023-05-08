@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Scarica Dati</h1>
+    <select id="corsoId">
+        <option value="0">Seleziona un corso...</option>
+        <option th:each="c: ${corsi}" th:value="${c.id}" th:text="${c.nome}"></option>
+    </select>
+    <p><button onclick="selezionaCorso()">Seleziona</button></p>
+</body>
+
+<script>
+    function selezionaCorso() {
+        let selectedValue = document.getElementById("corsoId").value
+        if (selectedValue == 0) {
+            alert("Seleziona un corso per poter continuare!")
+        } else {
+            window.location = "/download/" + selectedValue
+        }
+    }
+</script>
+
+</html>
